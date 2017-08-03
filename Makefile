@@ -17,7 +17,7 @@ ASM     = nasm	 #Doubt we'll use it.
 LD      = ld.lld
 SHARPC  = bssharp #In case we embed a virtual machine for extensions and all.
 
-CFLAGS = -O3 -Iinclude
+CFLAGS = -O3 -Iinclude -std=c11 -pedantic -Wall -Werror
 
 all: main.o
 	mv main.o fred

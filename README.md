@@ -7,6 +7,7 @@ gedit for developing the Feral kernel.
 ___
 
 Major features to be done:
+
 	- Freeform view
 	- SHARPER language plugins (object oriented Lua-like scripting language for extensions)
 	- Multi-tabbed view

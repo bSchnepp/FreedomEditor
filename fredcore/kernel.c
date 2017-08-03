@@ -20,15 +20,34 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-typedef struct _GTextArea
-{
-	GtkApplication* parent;	//TODO...
-	
-	/* Things we care mostly about... */
-	GtkWidget* scroll_window;
-	/* Everything we make is a child of the scroll window... */
-	
-	
-}GTextArea;
+const char* location = "./Config/keys.cfg";
 
-GTextArea* CreateGTextArea(GtkWidget* parent);
+/* All commands in FreedomEditor start with COMMAND + [KEY]. They can be more than one key, and press enter to confirm. */
+typedef struct
+{
+	/* Save a file */
+	int   NumToSave;
+	char* Save;
+
+	/* Open a file */
+	int NumToOpen;
+	char* Open;
+
+	/* Save As a file */
+	int NumToSaveAs;
+	char* SaveAs;
+
+	/* Close file (close tab) */
+	int NumToCloseTab;
+	char* Close;
+
+	/* Close program */
+	int NumToCloseProgram;
+	char* Shutdown;
+
+	/* TODO... */
+}KeyBinds;
+
+
+KeyBinds* GenerateKeyBindings();
+KeyBinds* GenerateKeyBindingsFromFile(char* location);
