@@ -21,14 +21,41 @@ SOFTWARE.
  */
 
 #include <gtk/gtk.h>
+#include <fredcore/gtextarea.h>
+
+#include <stdlib.h>
+
+/*
+	GtkApplicationWindow
+		GtkPanedWindow
+			GtkMenuBar
+			GtkNotebook
+			
+ */
+
+typedef struct
+{
+	GtkWidget* MenuBar;
+	GtkWidget* MenuFile;
+	GtkWidget* MenuFileNew;
+	GtkWidget* MenuFileOpen;
+	GtkWidget* MenuFileSave;
+}FredTopBar;
+
+FredTopBar* menu_bar;
 
 static void Activate(GtkApplication* application, gpointer userdata)
 {
 	GtkWidget* window;
+	GtkPanedSection* pane;
+
+	menu_bar = (FredTopBar*)malloc(sizeof(FredTopBar));
 	
 	window = gtk_application_window_new(application);
 	gtk_window_set_title(GTK_WINDOW(window), "FreedomEditor");
 	gtk_window_set_default_size(GTK_WINDOW(window), 600, 800);	//Taller than wide.
+
+
 	gtk_widget_show_all(window);
 }
 
@@ -42,6 +69,7 @@ int main(int argc, char* argv[])
 
 	//Program's been closed.
 	g_object_unref(application);
+	free(menu_bar);
 	return status;
 }
 

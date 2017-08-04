@@ -26,8 +26,10 @@ typedef struct _GTextArea
 	
 	/* Things we care mostly about... */
 	GtkWidget* scroll_window;
+
+
 	/* Everything we make is a child of the scroll window... */
-	
+	GtkWidget* text_view;	//Thing which holds the text??? I've never really done GTK+ stuff before seriously, so...
 	
 }GTextArea;
 
