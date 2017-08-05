@@ -70,6 +70,8 @@ GtkWidget* window;
 GtkWidget* splitpane;
 
 GtkWidget* notebook_temporary;
+GtkWidget* scroll_window;
+GtkWidget* text_view;
 
 static void Activate(GtkApplication* application, gpointer userdata)
 {
@@ -79,8 +81,10 @@ static void Activate(GtkApplication* application, gpointer userdata)
 	gtk_window_set_title(GTK_WINDOW(window), "FreedomEditor");
 	gtk_window_set_default_size(GTK_WINDOW(window), 600, 800);	//Taller than wide.
 
-	//splitpane = gtk_paned_new(GTK_ORIENTATION_VERTICAL);
-	//gtk_container_add(GTK_CONTAINER(window), splitpane);
+	//TODO: Create the drop down menus and all.
+
+	splitpane = gtk_paned_new(GTK_ORIENTATION_VERTICAL);
+	gtk_container_add(GTK_CONTAINER(window), splitpane);
 	
 	//menu_bar->MenuBar = 
 	//gtk_application_set_menubar(G_APPLICATION(application), menu_bar->MenuBar);
@@ -89,6 +93,9 @@ static void Activate(GtkApplication* application, gpointer userdata)
 
 	//notebook_temporary = gtk_notebook_new();
 	//gtk_paned_add2(GTK_PANED(splitpane), notebook_temporary);
+		
+	text_view = gtk_text_view_new();
+	gtk_paned_add2(GTK_PANED(splitpane), text_view);
 
 	//GtkWidget* button = gtk_button_new();
 	//gtk_paned_add1(GTK_PANED(splitpane), button);
@@ -107,13 +114,15 @@ int main(int argc, char* argv[])
 
 	GtkApplication* application = gtk_application_new("com.gmail.bschneppdev.freedomeditor", G_APPLICATION_FLAGS_NONE);
 	g_signal_connect(application, "activate", G_CALLBACK(Activate), NULL);
-	//g_signal_connect(application, "destroy", G_CALLBACK(gtk_main_quit), NULL);	//Do we actually need to do this? I don't think we do, but just in case..?
 
 
 	
 	status = g_application_run(G_APPLICATION(application), argc, argv);
 
 	//Program's been closed.
+	
+	//g_object_unref(notebook_temporary);
+	//g_object_unref(splitpane);
 	g_object_unref(application);
 	free(menu_bar);
 	return status;
