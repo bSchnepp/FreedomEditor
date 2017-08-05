@@ -26,10 +26,8 @@ SOFTWARE.
 #include <stdlib.h>
 
 /*
-	GtkApplicationWindow
-		GtkPanedWindow
-			GtkMenuBar
-			GtkNotebook
+	GtkApplicationWindow (GtkMenuBar)
+			GtkNotebook?? Replace???
 			
  */
 
@@ -37,24 +35,67 @@ typedef struct
 {
 	GtkWidget* MenuBar;
 	GtkWidget* MenuFile;
+	GtkWidget* MenuHome;
+	GtkWidget* MenuInsert;
+	GtkWidget* MenuTranslate;
+	GtkWidget* MenuHelp;
+}FredTopBar;
+
+typedef struct
+{
 	GtkWidget* MenuFileNew;
 	GtkWidget* MenuFileOpen;
 	GtkWidget* MenuFileSave;
-}FredTopBar;
+}FileDropDown;
+
+typedef struct
+{
+	GtkWidget* MenuEditCut;
+	GtkWidget* MenuEditUndo;
+	GtkWidget* MenuEditRedo;
+}EditDropDown;
+
+typedef struct
+{
+	char*       String;
+	GtkWidget*  CloseButton;
+}FredTabLabel;
+
+
+
 
 FredTopBar* menu_bar;
 
+GtkWidget* window;
+GtkWidget* splitpane;
+
+GtkWidget* notebook_temporary;
+
 static void Activate(GtkApplication* application, gpointer userdata)
 {
-	GtkWidget* window;
-	GtkPanedSection* pane;
-
 	menu_bar = (FredTopBar*)malloc(sizeof(FredTopBar));
 	
 	window = gtk_application_window_new(application);
 	gtk_window_set_title(GTK_WINDOW(window), "FreedomEditor");
 	gtk_window_set_default_size(GTK_WINDOW(window), 600, 800);	//Taller than wide.
 
+	//splitpane = gtk_paned_new(GTK_ORIENTATION_VERTICAL);
+	//gtk_container_add(GTK_CONTAINER(window), splitpane);
+	
+	//menu_bar->MenuBar = 
+	//gtk_application_set_menubar(G_APPLICATION(application), menu_bar->MenuBar);
+	
+	//gtk_application_set_menubar(application, 1);
+
+	//notebook_temporary = gtk_notebook_new();
+	//gtk_paned_add2(GTK_PANED(splitpane), notebook_temporary);
+
+	//GtkWidget* button = gtk_button_new();
+	//gtk_paned_add1(GTK_PANED(splitpane), button);
+	//gtk_widget_set_can_focus(splitpane, 0);
+ 
+
+	//gtk_paned_pack2(GTK_PANED(splitpane),);
 
 	gtk_widget_show_all(window);
 }
@@ -62,9 +103,14 @@ static void Activate(GtkApplication* application, gpointer userdata)
 int main(int argc, char* argv[])
 {
 	int status;
+	gtk_init(&argc, &argv);
 
 	GtkApplication* application = gtk_application_new("com.gmail.bschneppdev.freedomeditor", G_APPLICATION_FLAGS_NONE);
 	g_signal_connect(application, "activate", G_CALLBACK(Activate), NULL);
+	//g_signal_connect(application, "destroy", G_CALLBACK(gtk_main_quit), NULL);	//Do we actually need to do this? I don't think we do, but just in case..?
+
+
+	
 	status = g_application_run(G_APPLICATION(application), argc, argv);
 
 	//Program's been closed.

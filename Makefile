@@ -17,11 +17,19 @@ ASM     = nasm	 #Doubt we'll use it.
 LD      = ld.lld
 SHARPC  = bssharp #In case we embed a virtual machine for extensions and all.
 
-CFLAGS = -O3 -Iinclude -std=c11 -pedantic -Wall -Werror
+CFLAGS = -O3 -Iinclude -std=c11 -pedantic -Wall -Werror -mtune=native
 
 all: main.o
-	mv main.o fred
+	mv main.o fred$(CODENAME)
+
+.PHONY:	clean
 
 %.o: %.c
-	$(CC) $(GTK_CFLAG_INC) -o $@ $< $(GTK_LIB_INC)
+	$(CC) $(GTK_CFLAG_INC) $(CFLAGS) -o $@ $< $(GTK_LIB_INC)
 	
+
+clean:
+	rm -rf $(OBJECTS)$(CODENAME)
+
+run: all
+	./$(OBJECTS)$(CODENAME)
