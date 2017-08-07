@@ -14,14 +14,16 @@ Major features to be done:
 	- Theming, ala Notepad++. Option to ignore system GTK+ theme.
 	- Shoehorn GPU acceleration for SOMETHING.
 
+	- Create a simple module so that FreedomEditor can be integrated into an IDE..?
 ___
 
 Design goals:
 	
 	- Minimize/Eliminate use of the mouse (while still allowing it) as much as possible.
 	- All commands can be done with CTRL+(FUNCTION), or with the Function keys.
-	- Integrate the SHARPER language into the editor.
-	- Write in GTK. Qt is a no-no.
+	- Integrate the SHARPER language into the editor?
+	- Use GTK as it "feels more native to Linux".
 	- Eventually port GTK (and by extension fred) to Feral Waypoint.
 	- Syntax highlighting and correction
-	- Overall be better than gedit.
+	- Overall be better than gedit. (None of the weird open on different workspace thing.)
+

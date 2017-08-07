@@ -19,34 +19,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-
-typedef struct _GTextArea
-{
-	GtkApplication* parent;	//TODO...
-	
-	/* Things we care mostly about... */
-	GtkWidget* scroll_window;
-
-
-	/* Everything we make is a child of the scroll window... */
-	GtkWidget* text_view;
-	
-	/* Functions for the class...*/
-	void (*Undo)(struct _GTextArea* area);
-	void (*Redo)(struct _GTextArea* area);
-	void (*Cache)(struct _GTextArea* area, char* content);
-		
-	/* In case we expand on the functions of the class... */
-	void (*reserved0)(void);
-	void (*reserved1)(void);
-	void (*reserved2)(void);
-	void (*reserved3)(void);
-	void (*reserved4)(void);
-	void (*reserved5)(void);
-	
-	/* Data members... */
-	char* local_cache;
-}GTextArea;
-
-GTextArea* CreateGTextArea(GtkWidget* parent);
-void       DeleteGTextArea(GTextArea* area);
+ 
+ #include <fredcore/gtabbedpane.h>

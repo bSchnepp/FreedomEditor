@@ -112,7 +112,8 @@ int main(int argc, char* argv[])
 	int status;
 	gtk_init(&argc, &argv);
 
-	GtkApplication* application = gtk_application_new("com.gmail.bschneppdev.freedomeditor", G_APPLICATION_FLAGS_NONE);
+	GtkApplication* application = gtk_application_new("com.gmail.bschneppdev.freedomeditor", 
+	G_APPLICATION_FLAGS_NONE);
 	g_signal_connect(application, "activate", G_CALLBACK(Activate), NULL);
 
 
