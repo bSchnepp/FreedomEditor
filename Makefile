@@ -5,7 +5,7 @@
 GTK_CFLAG_INC = `pkg-config --cflags gtk+-3.0`
 GTK_LIB_INC   = `pkg-config --libs gtk+-3.0`
 
-CODENAME =-papercut	#First release... pun on how it's a text editor and menipulates written 
+CODENAME =-papercut	#First release... pun on how it's a text editor and menipulates written text. Very funny, I know.
 			#stuff!
 			
 
@@ -23,7 +23,7 @@ LD      = ld.lld
 SHARPC  = bssharp #In case we embed a virtual machine for extensions and all.
 
 ## This still works on Team Blue CPUs... hopefully?
-CFLAGS = -O3 -Iinclude -std=c11 -pedantic -Wall -Werror -mtune=native -march=znver1
+CFLAGS = -O3 -Iinclude -std=c11 -pedantic -Wall -Werror -mtune=znver1 -march=native
 
 all: main.o
 	mv main.o fred$(CODENAME)
